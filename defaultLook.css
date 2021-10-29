@@ -1,47 +1,47 @@
 body{
-    background: #12313A;
-    font-family: sans-serif;
-    color:#F0F0F0;    
-    font-size: 3vw;
+  background: #12313A;
+  font-family: sans-serif;
+  color:#F0F0F0;    
+  font-size: 2vw;
 }
 
 ul.horizontal {
-    font-size: 2vw;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #212527;
+  font-size: 2vw;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #212527;
 }
 
 ul.horizontal li {
-    float: left;
+  float: left;
 }
 
 ul.horizontal li a {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 1vw 2vw;
-    text-decoration: none;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 1vw 2vw;
+  text-decoration: none;
 }
 
 ul.horizontal li a:hover:not(.active) {
-    background-color: #000;
+  background-color: #000;
 }
 
 ul.horizontal li a.active {
-    background-color:#04AA6D;
+  background-color:#04AA6D;
 }
 
 .fade-in-text {
-    font-style: italic;
-    color: #F0F0F0;
-    animation: fadeIn ease-in 5s;
-    -webkit-animation: fadeIn ease-in 5s;
-    -moz-animation: fadeIn ease-in 5s;
-    -o-animation: fadeIn ease-in 5s;
-    -ms-animation: fadeIn ease-in 5s;
+  font-style: italic;
+  color: #F0F0F0;
+  animation: fadeIn ease-in 5s;
+  -webkit-animation: fadeIn ease-in 5s;
+  -moz-animation: fadeIn ease-in 5s;
+  -o-animation: fadeIn ease-in 5s;
+  -ms-animation: fadeIn ease-in 5s;
   }
   
   @keyframes fadeIn {
