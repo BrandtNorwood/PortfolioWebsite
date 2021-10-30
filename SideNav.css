@@ -5,7 +5,7 @@ body {
 .sidenav {
     margin: 1% 2% 0% 0%;
     height: 100%;
-    width: 160px;
+    width: 20%;
     position: sticky;
     z-index: 1;
     top: 0;
