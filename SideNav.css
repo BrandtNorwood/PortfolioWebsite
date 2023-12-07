@@ -12,6 +12,8 @@ body {
     left: 0;
     overflow-x: hidden;
     padding-top: 0%;
+    border: white solid;
+    border-radius: 5%;
 }
 
 .sidenav a {
@@ -19,7 +21,6 @@ body {
     text-decoration: none;
     color: #FFF;
     display: block;
-    background-color: #212527;
     margin: 10%, 10%;
 }
 
