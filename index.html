@@ -51,8 +51,17 @@
 
 
         
-        <div class="fade-in-text">
-            <p>IT tech and Programing God in the Making</p>
+       <div class="fade-in-text">
+            <p id="punchLine"></p>
+            <script>
+                let funnyLines = ["IT God in the Making", "Programmer Extraordinaire", "and I wrote this code",
+                                  "I'll fix anything!"];
+                // Use Math.floor to get a rounded down index
+                let randomIndex = Math.floor(Math.random() * funnyLines.length);
+                // Use textContent instead of InnerHTML
+                document.getElementById("punchLine").textContent = funnyLines[randomIndex];
+            </script>
         </div>
+
     </body>
 </html>
