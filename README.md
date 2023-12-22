@@ -1,7 +1,4 @@
 # PortfolioWebsite
-Its a website that hopefully will get me hired!
-also hello to anyone reading this!
+How did you get here! 
 
-This is on Version 2 now!
-
-It is being used as an asignment for my Web design class as well as being a real site for getting hired
+This is my portfolio website that i built in 2022 for a school project. It's still loosly maintained and I do try to update it once and a while however the code in here is a horrible example of my abilities and I'd deffer to my Hangerlog project for a more complete picture. The cleanest example in there is the HangerRemap tool since it was writen with the most clear set of expectations I had during that project.
