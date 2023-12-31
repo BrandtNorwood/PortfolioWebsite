@@ -1,21 +1,25 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>BranOSv3</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
-        <link rel="stylesheet" href="defaultLook.css">
-        <script src="slowPrint.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        
 
         <style>
+            body{
+                background: #212527;
+                font-family: sans-serif;
+                color:#F0F0F0;    
+                font-size: 2vw;
+            }
             #name{
                 font-size: 8vw;
                 text-decoration: underline #003C78;
+                white-space: pre-line;
             }
 
             #cursor{
@@ -23,45 +27,118 @@
             }
 
             .logo{
-                padding-top: 10%;
+                padding-top: 2%;
                 vertical-align: bottom;
+            }
+            h1{
+                font-size: 4vw; 
+                text-decoration: underline #003C78; 
+                text-align: center;
             }
         </style>
 
     </head>
     <body>
+        <div style="padding-bottom: 3%;height: 90vh;">
+            <div class = "logo">
+                <span id="name" ></span>
+                <span id="cursor">|</span>
+            </div>
 
-        <ul class = "horizontal">
-            <li><a class = "active" href="index.html">Home</a></li>
-            <li><a href="bio.html">Bio</a></li>
-            <li><a href="codeExamples.html">Code Examples</a></li>
-            <!--<li><a href="contactForm.html">Contact Form</a></li>-->
-        </ul>
-        
-        <div class = "logo">
-            <span id="name" ></span>
-            <span id="cursor">|</span>
+            <div id="fade-in-text" style="display: none;">
+                <p id="punchLine"></p>
+                <script>
+                    let funnyLines = ["IT God in the Making", "Programmer Extraordinaire", "and I wrote this code!", "and I own a computer", "This String is 34 Characters Long!",
+                                    `"Fix" may not be in the name but I'll still do it`, "Scripting Samurai", "College Dropout, IT Specialist", "I Wrote this on a 6 year old Thinkpad!"];
+                    // Use Math.floor to get a rounded down index
+                    let randomIndex = Math.floor(Math.random() * funnyLines.length);
+                    // Use textContent instead of InnerHTML
+                    document.getElementById("punchLine").textContent = funnyLines[randomIndex];
+                </script>
+            </div>  
+        </div>
+
+        <div id="titleBar" style=" background-color: white; height: 10%; width: 100%;"><p style="font-size: 1vw; color: #000;text-align: center;">↓↓↓↓↓↓↓↓↓</p></div>
+
+        <div id = "bioDiv" style="padding: 5%;">
+            <h1>Who am I?</h1>
+
+            <div id="bioBody" style="padding: 0% 5%;">
+                <p>  
+                    I'm an intermediate developer with some skills in HTML, CSS, SQL,
+                    JavaScript, and Java! I also have work in IT and absolutly love it. My first ever
+                    computer was broken when I got it and that really set the tone for my life with tech. I love to create and
+                    experiment which is where my love of programming came from. I did two years at NDSU before having to drop out 
+                    due to financial and personal reasons however in this time I've gained valuable experience and even developed
+                    a small <a href="https://github.com/BrandtNorwood/HangerLog-FJC">web-based internal tool</a> for a previous employer.
+                </p>
+            </div>
+        </div>
+
+        <div id="bioBar" style="background-color: white; height: 10%; width: 100%;"><p style="font-size: 1vw; color: #000;text-align: center;">↓↓↓↓↓↓↓↓↓</p></div>
+
+        <div id="languageDiv" style="padding: 5%;">
+            <h1>What Programming skills do I have?</h1>
+
+            <p id="java"><Strong>Java</Strong><br>
+                <br>
+                While my first ever language was c++, I primarily worked with Arduino, thus, my first language
+                I properly understood and worked with Java. I have a few years of experience mostly with
+                simple programs and algorithms. However, I'm not scared of a challenge and look forward to
+                some interesting programming! 
+            </p>
+
+            <p id="html" ><Strong>Html & CSS</Strong><br>
+                <br>
+                While I'm no graphical designer I can make a functional webpage (as you can see here) and I have even used this skill to make a web app for an employer.
+                While I do enjoy it this is another area I'm still gaining experience in and rewriting this page recently I realized just how far I've come!
+            </p>
+
+            <p id="javaScript"> <Strong>JavaScript</Strong><br>
+                <br>
+                I'm pretty experienced in JS and have done some intermediate work with both this site but also a web-based application. This application ran JS both front
+                and backend. The backend talks to a MySQL Server and is built to be as bulletproof as possible for zero downtime.
+            </p>
+
+            <p id="cpp"><strong>C++</strong><br>
+                <br>
+                At the time of writing this I'm just picking this language back up to play with the SDL2 library. I'd definatly consider myself a beginer in C++ due to my
+                lack of understanding of memory managment however due to my experience in other C type languages I'm finding it rather comfortable so far.
+            </p>
         </div>
         
-        <script>
-            $(function () {
-                showText("#name", "Hi! My Name Is \n Brandt Norwood", 0, 30);   
-            });
+        <script> 
+
+            //This script handles the text writing at the top of the page
+            let target = document.getElementById("name");
+            let message = "Hi! My Name Is \n Brandt Norwood";
+            let index = 0;
+            let interval = 50;
+
+            function showText() { 
+                if (index < message.length) {
+                    target.append(message[index++]);
+
+                    setTimeout(showText, interval);
+                }else{
+                    //This just sets the punchline visible
+                    document.getElementById("fade-in-text").style.display = "inherit"
+                }
+            }
+            showText();
+
+            //this code blinks the cursor
+            var cursor = true;
+            var speed = 250;
+            setInterval(() => {
+                if(cursor) {
+                    document.getElementById('cursor').style.opacity = 0;
+                    cursor = false;
+                }else {
+                    document.getElementById('cursor').style.opacity = 1;
+                    cursor = true;
+                }
+            }, speed);
         </script>
-
-
-        
-       <div class="fade-in-text">
-            <p id="punchLine"></p>
-            <script>
-                let funnyLines = ["IT God in the Making", "Programmer Extraordinaire", "and I wrote this code!", "and I own a computer", "This String is 34 Characters Long!",
-                                  `"Fix" may not be in the name but I still do it`, "Scripting Samurai", "College Dropout, IT Specialist", "I Wrote this in the Github Editor"];
-                // Use Math.floor to get a rounded down index
-                let randomIndex = Math.floor(Math.random() * funnyLines.length);
-                // Use textContent instead of InnerHTML
-                document.getElementById("punchLine").textContent = funnyLines[randomIndex];
-            </script>
-        </div>
-
     </body>
 </html>
