@@ -1,144 +1,217 @@
 <!DOCTYPE html>
 
+<!-- Last Updated 10/2/24 - Niko Norwood -->
+
+<!-- This is a single doc webpage and is not very pretty but it was built to be simple 
+     It is hosted on a low power Nginx VM hosted in my homelab and proxied through Cloudflare
+        
+     Thanks for reading -Niko <3
+-->
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Portfolio Website</title>
+        <title>Niko's Portfolio</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
 
         <style>
             body{
-                background: #212527;
+                --background: #363636;
+                --lowlight: #CCA43B;
+                --highlight: #33435B;
+                --link: #7c93b6;
+                --offwhite: #E5E5E5;
+                --text: #FFFFFF;
+                
+                @media (prefers-color-scheme: light) {
+                    --background: #E5E5E5;
+                    --offwhite: #424242;
+                    --text: #363636;
+                }
+
+                background-color: var(--background);
+                color: var(--text);
+                
                 font-family: sans-serif;
-                color:#F0F0F0;    
-                font-size: 2vw;
-            }
-            #name{
-                font-size: 8vw;
-                text-decoration: underline #003C78;
-                white-space: pre-line;
+                font-size: 200%;
+
+                @media (max-aspect-ratio: 1/1){
+                    font-size: 150%;   
+                }
             }
 
-            #cursor{
-                font-size: 8vw;
+
+
+            #introBox{
+                min-height: 24m;
+                font-size: 3em;
+                padding-bottom: 1%;
+
+                @media (min-aspect-ratio: 1/1){
+                    padding-bottom: 3%;
+                    min-height: 4em;
+                    font-size: 4em;
+                }
+                
+                .nameBox{
+                    padding-top: 2%;
+                    vertical-align: bottom;
+                }
+                
+                #name{
+                    text-decoration: underline var(--highlight);
+                    white-space: pre-line;
+                }
+
+                #punchLine {
+                    font-size: 0.25em; 
+                    color : var(--offwhite);
+                }
             }
 
-            .logo{
-                padding-top: 2%;
-                vertical-align: bottom;
+            .bodyBox{
+                padding: 5vh 1vw;
             }
+
+            .bodyText{
+                padding: 0vh 0vw;
+                color : var(--offwhite);
+            }
+
+            a{
+                color : var(--link);
+            }
+
+            a:hover {
+                color : var(--lowlight);
+            }
+
             h1{
-                font-size: 4vw; 
-                text-decoration: underline #003C78; 
-                text-align: center;
+                font-size: 3em; 
+                text-decoration: underline var(--lowlight); 
+                text-align: left;
+
+                @media (max-aspect-ratio: 1/1){
+                    font-size: 1.5em;
+                }
             }
         </style>
 
     </head>
     <body>
-        <div style="padding-bottom: 3%;height: 90vh;">
-            <div class = "logo">
+        <div id="introBox">
+
+            <!-- This block is the feilds for the name typing -->
+            <div class = "nameBox">
                 <span id="name" ></span>
                 <span id="cursor">|</span>
             </div>
 
+
+            <!-- This block does the little splash text funnies-->
             <div id="fade-in-text" style="display: none;">
                 <p id="punchLine"></p>
                 <script>
-                    let funnyLines = ["IT God in the Making", "Programmer Extraordinaire", "and I wrote this code!", "and I own a computer", "This String is 34 Characters Long!",
-                                    `"Fix" may not be in the name but I'll still do it`, "Scripting Samurai", "College Dropout, IT Specialist", "I Wrote this on a 6 year old Thinkpad!"];
-                    // Use Math.floor to get a rounded down index
+                    // This script sets the punchLine feild to a random "quote" on page load 
+
+                    let funnyLines = ["Coding Connoisseur", "Programmer Extraordinaire", "and I wrote this code!", "and I own a computer", "This String is 34 Characters Long!",
+                                    `"Fix" may not be in the name but I'll still do it`, "Scripting Samurai", "Tech Support Superhero"];
+                    // Get a random index from the funnyLines array
                     let randomIndex = Math.floor(Math.random() * funnyLines.length);
-                    // Use textContent instead of InnerHTML
+                    // Set the text in the punchline feild
                     document.getElementById("punchLine").textContent = funnyLines[randomIndex];
                 </script>
-            </div>  
+            </div>
+            
+
+
+            <!-- JavaScript to type out the name on the top of the page -->
+            <script> 
+                //This script handles the text writing at the top of the page
+                //Revised Oct 2nd 2024 - Niko Norwood
+
+                let message = "Hi! My Name Is \n Niko Norwood"; //Text to be printed
+                let interval = 40; //sets print speed
+                var blinkSpeed = 250;        //cursor blink speed
+
+                let messageFeild = document.getElementById("name");    //html message target
+                let cursorObject = document.getElementById("cursor"); //html cursor target
+                let index = 0;
+
+                //Function to 'type' out the text
+                function showText() { 
+                    if (index < message.length) {
+                        messageFeild.append(message[index]);
+                        index++;
+
+                        setTimeout(showText, interval); //not a fan of recusion like this but need the timeout
+                    }else{
+                        //This just sets the punchline visible
+                        document.getElementById("fade-in-text").style.display = "inherit"
+                    }
+                }
+                showText();
+
+                //Code falls into this loop to blink the cursor
+                var cursor = true;
+                setInterval(() => {
+                    if(cursor) { //turn cursor off if on
+                        cursorObject.style.opacity = 0;
+                        cursor = false;
+                    }else {      //turn cursor on if off
+                        cursorObject.style.opacity = 1;
+                        cursor = true;
+                    }
+                }, blinkSpeed);
+            </script>
         </div>
 
-        <div id="titleBar" style=" background-color: white; height: 10%; width: 100%;"><p style="font-size: 1vw; color: #000;text-align: center;">↓↓↓↓↓↓↓↓↓</p></div>
-
-        <div id = "bioDiv" style="padding: 5%;">
+        <!-- Bio Section -->
+        <div id = "bioBox" class="bodyBox">
             <h1>Who am I?</h1>
 
-            <div id="bioBody" style="padding: 0% 5%;">
+            <div class="bodyText">
                 <p>  
-                    I'm an intermediate developer with some skills in HTML, CSS, SQL,
-                    JavaScript, and Java! I also work in IT and absolutly love it. My first ever
-                    computer was broken when I got it so tech has always been something to tinker with and fix for me. I love to create and
-                    experiment which is where my love of programming came from. I did two years at NDSU before having to drop out 
-                    due to financial and personal reasons however in this time I've gained valuable experience and even developed
-                    a small <a href="https://github.com/BrandtNorwood/HangerLog-FJC">web-based internal tool</a> for a previous employer.
+                    I'm an intermediate developer with some skills in HTML, CSS, SQL, JavaScript, Powershell, and more! 
+                    I've spent my entire life tinkering with and fixing tech and am known as the local IT person.
+                    I have been programming since high school and find it as a great outlet for creativity.
+                    Programming for me is a passion and an art and I hope to one day do it as a full time job.
+                    Right now I live in the Fargo Moorhead area and work on the helpdesk for the city government.
+                    I'm 22, nonbinary, and have a passion for music and photography.
+                    Hopefully if you are reading this I can have the opertunity to introduce myself fully and maybe even work with you!
                 </p>
             </div>
         </div>
 
-        <div id="bioBar" style="background-color: white; height: 10%; width: 100%;"><p style="font-size: 1vw; color: #000;text-align: center;">↓↓↓↓↓↓↓↓↓</p></div>
 
-        <div id="languageDiv" style="padding: 5%;">
-            <h1>What Programming skills do I have?</h1>
+        <!-- Site Section -->
+        <div id="siteBox" class="bodyBox">
+            <h1>Why does this site exist?</h1>
 
-            <p id="java"><Strong>Java</Strong><br>
-                <br>
-                While my first ever language was c++, I primarily worked with Arduino, thus, my first language
-                I properly understood and worked with Java. I have a few years of experience mostly with
-                simple programs and algorithms. However, I'm not scared of a challenge and look forward to
-                some interesting programming! 
-            </p>
-
-            <p id="html" ><Strong>Html & CSS</Strong><br>
-                <br>
-                While I'm no graphical designer I can make a functional webpage (as you can see here) and I have even used this skill to make a web app for an employer.
-                While I do enjoy it this is another area I'm still gaining experience in and rewriting this page recently I realized just how far I've come!
-            </p>
-
-            <p id="javaScript"> <Strong>JavaScript</Strong><br>
-                <br>
-                I'm pretty experienced in JS and have done some intermediate work with both this site but also a web-based application. This application ran JS both front
-                and backend. The backend talks to a MySQL Server and is built to be as bulletproof as possible for zero downtime.
-            </p>
-
-            <p id="cpp"><strong>C++</strong><br>
-                <br>
-                At the time of writing this I'm just picking this language back up to play with the SDL2 library. I'd definatly consider myself a beginer in C++ due to my
-                lack of understanding of memory managment however due to my experience in other C type languages I'm finding it rather comfortable so far.
+            <p class="bodyText">
+                As a demonstration of skill of course! In all seriousness this site Isn't very pretty and the html file for this site is a little strange. 
+                This site was condensed down to one HTML file with no dependancies as both a challenge, and also so I can use it as a test case. 
+                I host this site in nginx on my own proxmox cluster and use this website to make sure the cluster is alive and well. 
+                I have a few other sites I host for freinds so if this simple website is down then likely my server is down aswell.
             </p>
         </div>
-        
-        <script> 
+    
 
-            //This script handles the text writing at the top of the page
-            let target = document.getElementById("name");
-            let message = "Hi! My Name Is \n Niko Norwood";
-            let index = 0;
-            let interval = 50;
+        <!-- Code Example Section -->
+        <div id = "exampleBox" class="bodyBox">
+            <h1>What can I do?</h1>
 
-            function showText() { 
-                if (index < message.length) {
-                    target.append(message[index++]);
+            <div class="bodyText">
+                <p>  
+                    Lately I've spend a lot of time in Powershell and JavaScript but I tend to hop around alot. 
+                    I've spent time writing in everything from Lua to C++ and love to learn new things.
+                    I wouldn't consider myself a master of any language but I can slide into writing just about anything.
+                    My <a href="https://github.com/BrandtNorwood/PortfolioWebsite">github</a> includes some but not all of my code so feel free to peak through it for some admittedly outdated examples.
+                    Otherwise feel free to download this very page and peak through its code! It includes some CSS, JS, and HTML wraped tightly in one document.
+                </p>
+            </div>
+        </div>
 
-                    setTimeout(showText, interval);
-                }else{
-                    //This just sets the punchline visible
-                    document.getElementById("fade-in-text").style.display = "inherit"
-                }
-            }
-            showText();
-
-            //this code blinks the cursor
-            var cursor = true;
-            var speed = 250;
-            setInterval(() => {
-                if(cursor) {
-                    document.getElementById('cursor').style.opacity = 0;
-                    cursor = false;
-                }else {
-                    document.getElementById('cursor').style.opacity = 1;
-                    cursor = true;
-                }
-            }, speed);
-        </script>
     </body>
 </html>
