@@ -1,4 +1,8 @@
 # PortfolioWebsite
 How did you get here! 
 
-This is my portfolio website that i built in 2022 for a school project. V2 is close to the final version I used in class however as of 12/30/23 this site is now on V3. There were a few pages that only existed due to the assignment requirements and i decided this site would be better as a single page then 3 or 4 pages. I also used this opertunity to rewrite a few things and esspecialy the 'slowPrint' script. This is certianly not the best show of my programming skill but it was writen in a single afternoon so take that as you'd like. Thanks for looking and hope you don't find too many atrocities.
+This is the github repo for my portfilo website. The full site can be accessed [here](https://nikonet.org)
+
+This website was condensed down to one file in order to be used for testing different webhosts and portability. I'm aware it's not best practice but I tried to make the code as readable and clean as possible otherwise. I'm also not a graphic designer so excuse any questionable choices in the design of this website. Please feel free to read the code or reach out to me if you have any suguestions! 
+
+Thanks - Niko <3
